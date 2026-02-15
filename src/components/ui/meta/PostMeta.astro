@@ -6,7 +6,7 @@ import { slugifyTag as slugify } from '../../../lib/slug';
 interface Props {
   pubDate: Date;
   readingTimeMin: number;
-  authorName?: string;
+  authorName?: 'Santiago Granados Pascagaza';
 }
 const { pubDate, readingTimeMin, authorName } = Astro.props as Props;
 ---
@@ -27,7 +27,7 @@ const { pubDate, readingTimeMin, authorName } = Astro.props as Props;
           <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
             <path fill="currentColor" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20Zm0-18a8 8 0 1 0 0 16 8 8 0 0 0 0-16Zm1 9h3v-2h-2V7h-2v6Z"/>
           </svg>
-          <span>{readingTimeMin} min read</span>
+          <span>{readingTimeMin} min Leídos</span>
         </div>
       </div>
     </div>
