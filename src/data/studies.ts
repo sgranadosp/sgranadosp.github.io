@@ -1,27 +1,28 @@
 export const studies = [
   {
-    title: "B.S. in Computer Science",
-    institution: "State University",
+    title: "Grado de Bachillerato",
+    institution: "Summerhill School",
     description:
-      "Core CS foundations: data structures, algorithms, operating systems, networking, and databases; team capstone in web systems.",
+      "Educación básica de bachillerato en el colegio trilingüe Summerhill School, ubicado en Cota, Cundinamarca, el cual me dió muchas de las bases que me llevaron a apasionarme por el mundo de la tecnología y así decantarme finalmente por mi carreara actual",
     tags: [
-      "Algorithms",
-      "Data Structures",
-      "Operating Systems",
-      "Databases",
-      "Networking",
+      "Inglés",
+      "Habilidades investigativas",
+      "Habilidades sociales",
     ],
   },
   {
-    title: "M.S. in Software Engineering",
-    institution: "Tech Institute",
+    title: "Pregrado de Ingeniería de Sistemas (actualmente en quinto semestre)",
+    institution: "Universidad El Bosque",
     description:
-      "Focus on distributed systems, testing strategies, and cloud architecture; thesis on resilience patterns in microservices.",
+      "Enfoque en el desarrollo de soluciones tecnológicas a través de aplicativos, páginas web y sistemas de información que satisfagan las exigencias del cliente.",
     tags: [
-      "Distributed Systems",
-      "Cloud Architecture",
-      "Testing",
-      "Microservices",
+      "Algoritmos",
+      "Desarrollo Web",
+      "Lógica de Negocio",
+      "Bases de Datos",
+      "Gestión de Proyectos",
+      "Trabajo en Equipo",
+      "Pensamiento Lógico-Matemático",
     ],
   },
 ];
