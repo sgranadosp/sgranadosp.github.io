@@ -1,4 +1,4 @@
-import avatar from '../assets/images/sample-avatar.jpg';
+import avatar from 'src/assets/images/santiago.png';
 
 export const author = {
   name: 'Santiago Granados Pascagaza',
