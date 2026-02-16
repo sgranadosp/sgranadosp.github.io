@@ -2,57 +2,38 @@ import PhoenixIcon from '../assets/logos/Phoenix-logo.svg?raw';
 import N8nIcon from '../assets/logos/N8n-logo.svg?raw';
 import SupabaseIcon from '../assets/logos/Supabase-logo.svg?raw';
 import PosthogIcon from '../assets/logos/posthog-logo.svg?raw';
-import PythonIcon from '../assets/logos/Python-logo.svg?raw';
-import TailwindIcon from '../assets/logos/Tailwind-logo.svg?raw';
-
 
 export const projects = [
 	{
-		title: "Workflow Automation Orchestrator (n8n)",
-		techStack: "n8n • Node.js • TypeScript • PostgreSQL",
-		description: "Event‑driven workflows for data sync, notifications, and back‑office automation. Custom nodes, secrets management, retries, and metrics.",
-		ctaText: "View Repo →",
+		title: "Front-End Aplicación de Conversión de Formato de Imágenes",
+		techStack: "React • JavaScript • TypeScript • CSS • HTML",
+		description: "Interfaz visual hecha a través de React, la cual busca brindar una experiencia agradable visualmente y sobre todo un uso muy intuitivo al usuario final de esta web de conversión de formato de imágenes.",
+		ctaText: "Ir al repositorio →",
 		ctaLink: "#",
 		icon: N8nIcon
 	},
 	{
-		title: "SaaS API Starter (Auth, Billing, RBAC)",
-		techStack: "Node.js • TypeScript • PostgreSQL • Supabase • Stripe",
-		description: "Production‑ready REST/GraphQL API with JWT auth, role‑based access, Stripe subscriptions, and rate‑limited endpoints.",
-		ctaText: "Get Source < / >",
+		title: "Back-End Aplicativo de gestión de citas médicas para el centro de salud Los Cobos",
+		techStack: "Java • SpringBoot",
+		description: "Aplicativo simple para la gestión de citas médicas, turnos y otras tareas de suma importancia en la clínica Los Cobos de la Universidad El Bosque.",
+		ctaText: "Ir al repositorio →",
 		ctaLink: "#",
 		icon: SupabaseIcon
 	},
 	{
-		title: "Realtime Chat Service",
-		techStack: "Phoenix • WebSockets • Redis • Docker",
-		description: "Low‑latency chat with channels, presence, and backpressure handling. Includes load tests and horizontal scaling notes.",
-		ctaText: "Live Demo →",
+		title: "Back-End y Front-end Aplicativo de traducción de texto",
+		techStack: "Java",
+		description: "Aplicativo simple para la traducción de texto a diversos idiomas, intuitivo y fácil de utilizar.",
+		ctaText: "Ir al repositorio →",
 		ctaLink: "#",
 		icon: PhoenixIcon
 	},
 	{
-		title: "Product Analytics Pipeline",
-		techStack: "Node.js • PostHog • PostgreSQL • ClickHouse",
-		description: "Event ingestion, batching, and replay; user properties and cohorts; dashboards for funnels, retention, and feature adoption.",
-		ctaText: "Read Case Study →",
+		title: "Back-End y Front-End para la gestión de inventario de una tienda tecnológica",
+		techStack: "Java",
+		description: "Aplicativo simple con herramientas para agregar, eliminar, consultar y actualizar métricas de inventario para una tienta tecnológica ubicada en Bogotá, Usaquén.",
+		ctaText: "Ir al repositorio →",
 		ctaLink: "#",
 		icon: PosthogIcon
-	},
-	{
-		title: "Data Ingestion & ETL",
-		techStack: "Python • Airflow • PostgreSQL • S3",
-		description: "Scheduled extract/transform/load with schema migrations, data quality checks, and partitioned tables for analytics.",
-		ctaText: "View Repo →",
-		ctaLink: "#",
-		icon: PythonIcon
-	},
-	{
-		title: "Design System",
-		techStack: "React • TypeScript • Tailwind CSS • Storybook",
-		description: "Accessible UI kit with tokens, theming, and testing. Published as a versioned package with changelogs and docs.",
-		ctaText: "Docs →",
-		ctaLink: "#",
-		icon: TailwindIcon
 	},
 ];
