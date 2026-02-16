@@ -3,7 +3,7 @@ export const studies = [
     title: "Grado de Bachillerato",
     institution: "Summerhill School",
     description:
-      "Educación básica de bachillerato en el colegio trilingüe Summerhill School, ubicado en Cota, Cundinamarca, el cual me dió muchas de las bases que me llevaron a apasionarme por el mundo de la tecnología y así decantarme finalmente por mi carreara actual",
+      "Educación básica de bachillerato en el colegio trilingüe Summerhill School, ubicado en Cota, Cundinamarca, el cual me dió muchas de las bases que me llevaron a apasionarme por el mundo de la tecnología y así decantarme finalmente por mi carreara actual.",
     tags: [
       "Inglés",
       "Habilidades investigativas",
