@@ -19,6 +19,7 @@ function sanitizeToWhite(svg: string, size = 18) {
 const contactIcon = sanitizeToWhite(contactIconRaw);
 const feedUrl = new URL('rss.xml', Astro.site).toString();
 const instagramUrl = `https://www.instagram.com/santiago._gr/{feedUrl}`;
+const Xurl = `https://x.com/SantiagoGrPa`
 ---
 
 <footer id="contact" class="py-12 px-4 text-center">
@@ -35,7 +36,7 @@ const instagramUrl = `https://www.instagram.com/santiago._gr/{feedUrl}`;
   </div>
   <div class="mt-6 flex items-center justify-center gap-4 text-sm">
     <a class="sw-btn-sm" href={instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Sígueme en mi Instagram">Instagram</a>
-    <a class="sw-btn-sm" href="/blog/" aria-label="Browse all posts">Habilidades Blandas</a>
+    <a class="sw-btn-sm" href="{Xurl}" aria-label="Browse all posts">X</a>
   </div>
   <script type="module">
     document.addEventListener('click', (e) => {
