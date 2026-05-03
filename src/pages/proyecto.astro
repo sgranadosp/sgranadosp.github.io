@@ -1,0 +1,141 @@
+---
+import Layout from '../layouts/BlogPost.astro';
+import GlowLineSeparator from '@/components/ui/separator/GlowLineSeparator.astro';
+const pageTitle = 'Proyecto';
+const pageDescription = 'Proyecto integrador: diseño e implementación de base de datos.';
+---
+
+<Layout title={pageTitle} description={pageDescription} pubDate={new Date()} showHeader={false}>
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/evidencias" class="breadcrumb__link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M19 12H5M12 5l-7 7 7 7"/>
+      </svg>
+      Evidencias
+    </a>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <div class="page-header__badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+      </svg>
+      Proyecto Integrador
+    </div>
+    <h1 class="page-header__title page-header__title--proyecto">Proyecto</h1>
+    <p class="page-header__sub">Full Stack · Database Design</p>
+    <p class="page-header__desc">Implementación completa de un sistema con diseño y gestión de base de datos.</p>
+  </header>
+
+  <GlowLineSeparator />
+
+  <!-- ═══════════════════════════════════════════════════════
+       CONTENIDO — Añade el contenido de tu proyecto aquí
+       ═══════════════════════════════════════════════════════ -->
+  <div class="code-content">
+
+    <div class="placeholder">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">
+        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+      </svg>
+      <p>Añade aquí el contenido de tu proyecto</p>
+    </div>
+
+  </div>
+
+</Layout>
+
+<style>
+  .breadcrumb { margin-bottom: 1.5rem; }
+
+  .breadcrumb__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.18s ease;
+  }
+
+  .breadcrumb__link:hover {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .page-header { margin-bottom: 1.5rem; }
+
+  .page-header__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--accent);
+    background: rgba(255, 138, 76, 0.08);
+    border: 1px solid rgba(255, 138, 76, 0.25);
+    border-radius: 100px;
+    padding: 0.3rem 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .page-header__title {
+    font-size: clamp(2.2rem, 6vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin: 0 0 0.3rem;
+  }
+
+  .page-header__title--proyecto {
+    background: linear-gradient(135deg, #ffedd5 0%, #FF8A4C 55%, #F97316 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .page-header__sub {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin: 0 0 0.6rem;
+    letter-spacing: 0.04em;
+  }
+
+  .page-header__desc {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .code-content {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.9rem;
+    padding: 4rem 2rem;
+    border: 1px dashed rgba(255, 138, 76, 0.2);
+    border-radius: var(--radius);
+    color: rgba(255, 138, 76, 0.3);
+    text-align: center;
+  }
+
+  .placeholder p {
+    margin: 0;
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+  }
+</style>

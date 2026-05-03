@@ -1,0 +1,141 @@
+---
+import Layout from '../layouts/BlogPost.astro';
+import GlowLineSeparator from '@/components/ui/separator/GlowLineSeparator.astro';
+const pageTitle = 'NoSQL';
+const pageDescription = 'Bases de datos no relacionales: MongoDB, documentos y colecciones.';
+---
+
+<Layout title={pageTitle} description={pageDescription} pubDate={new Date()} showHeader={false}>
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/evidencias" class="breadcrumb__link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M19 12H5M12 5l-7 7 7 7"/>
+      </svg>
+      Evidencias
+    </a>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <div class="page-header__badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+      </svg>
+      Bases de Datos No Relacionales
+    </div>
+    <h1 class="page-header__title page-header__title--nosql">NoSQL</h1>
+    <p class="page-header__sub">Non-Relational Databases</p>
+    <p class="page-header__desc">Documentos, colecciones y consultas en MongoDB y otros motores NoSQL.</p>
+  </header>
+
+  <GlowLineSeparator />
+
+  <!-- ═══════════════════════════════════════════════════════
+       CONTENIDO — Añade tus bloques de código aquí debajo
+       ═══════════════════════════════════════════════════════ -->
+  <div class="code-content">
+
+    <div class="placeholder">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">
+        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+      </svg>
+      <p>Añade aquí tus ejercicios de NoSQL</p>
+    </div>
+
+  </div>
+
+</Layout>
+
+<style>
+  .breadcrumb { margin-bottom: 1.5rem; }
+
+  .breadcrumb__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.18s ease;
+  }
+
+  .breadcrumb__link:hover {
+    color: rgb(110, 231, 183);
+    text-decoration: none;
+  }
+
+  .page-header { margin-bottom: 1.5rem; }
+
+  .page-header__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: rgb(110, 231, 183);
+    background: rgba(110, 231, 183, 0.08);
+    border: 1px solid rgba(110, 231, 183, 0.2);
+    border-radius: 100px;
+    padding: 0.3rem 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .page-header__title {
+    font-size: clamp(2.2rem, 6vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin: 0 0 0.3rem;
+  }
+
+  .page-header__title--nosql {
+    background: linear-gradient(135deg, #d1fae5 0%, #6ee7b7 55%, #10b981 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .page-header__sub {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin: 0 0 0.6rem;
+    letter-spacing: 0.04em;
+  }
+
+  .page-header__desc {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .code-content {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.9rem;
+    padding: 4rem 2rem;
+    border: 1px dashed rgba(110, 231, 183, 0.2);
+    border-radius: var(--radius);
+    color: rgba(110, 231, 183, 0.3);
+    text-align: center;
+  }
+
+  .placeholder p {
+    margin: 0;
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+  }
+</style>
