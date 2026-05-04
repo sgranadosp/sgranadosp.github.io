@@ -34,29 +34,14 @@ const pageDescription = 'Consultas y gestión de bases de datos relacionales con
 
   <GlowLineSeparator />
 
-  <!-- ═══════════════════════════════════════════════════════
-       CONTENIDO — Añade tus bloques de código aquí debajo
-       ═══════════════════════════════════════════════════════ -->
   <div class="code-content">
 
-    <!-- Ejemplo de cómo se verá un bloque de código:
     <section class="code-block">
       <div class="code-block__header">
-        <span class="code-block__label">Consulta básica — SELECT</span>
-        <span class="code-block__lang">SQL</span>
+        <span class="code-block__label">Taller 1 &mdash; SQL Avanzado + Transacciones ACID</span>
+        <span class="code-block__lang">SQL / Oracle</span>
       </div>
-      <pre class="code-block__pre"><code>SELECT * FROM empleados WHERE departamento = 'IT';</code></pre>
-    </section>
-    -->
-
-    <div class="placeholder">
-      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">
-        <ellipse cx="12" cy="5" rx="9" ry="3"/>
-        <path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/>
-        <path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/>
-      </svg>
-      <p>
--- =====================================================================
+      <pre class="code-block__pre"><code>-- =====================================================================
 -- 03_template_entrega_taller1_v2.sql
 -- Taller aplicado 1 - SQL avanzado + Transacciones (ACID) aplicado
 -- Plantilla de entrega para estudiantes
@@ -65,7 +50,7 @@ const pageDescription = 'Consultas y gestión de bases de datos relacionales con
 -- 1. Trabajar únicamente sobre las tablas T1_% y AUDIT_SALARY_ADJUSTMENTS_T1
 -- 2. NO modificar la estructura del entorno entregado por el docente
 -- 3. NO eliminar secciones de esta plantilla
--- 4. Reemplazar únicamente los bloques indicados como "ESCRIBA AQUÍ"
+-- 4. Reemplazar únicamente los bloques indicados como &quot;ESCRIBA AQUÍ&quot;
 -- 5. Usar la variante asignada por el docente (1, 2, 3 o 4)
 -- 6. Usar un tag único de ejecución final, por ejemplo: P03_FINAL
 -- =====================================================================
@@ -85,7 +70,7 @@ SET FEEDBACK ON
 -- Tag de ejecución final (ejemplo: P03_FINAL): __
 
 DEFINE p_variant_id = 4
-DEFINE p_execution_tag = 'P01_FINAL'
+DEFINE p_execution_tag = &#x27;P01_FINAL&#x27;
 
 PROMPT ===== 0. VERIFICACIÓN DE LA VARIANTE ASIGNADA =====
 SELECT
@@ -102,7 +87,7 @@ SELECT
     max_salary_vs_avg_pct,
     notes
 FROM t1_variants
-WHERE variant_id = &p_variant_id;
+WHERE variant_id = &amp;p_variant_id;
 
 -- ============================================================
 -- GUÍA RÁPIDA DE OBJETOS DISPONIBLES
@@ -233,11 +218,11 @@ dept_stats AS (
 recent_history AS (
     SELECT DISTINCT 
         jh.employee_id, 
-        'SI' AS recent_flag
+        &#x27;SI&#x27; AS recent_flag
     FROM t1_job_history jh
     CROSS JOIN t1_variants v
-    WHERE v.variant_id = &p_variant_id
-      AND jh.end_date >= ADD_MONTHS(TRUNC(SYSDATE), -v.recent_job_history_months)
+    WHERE v.variant_id = &amp;p_variant_id
+      AND jh.end_date &gt;= ADD_MONTHS(TRUNC(SYSDATE), -v.recent_job_history_months)
 )
 
 -- Consulta principal
@@ -260,7 +245,7 @@ SELECT
     -- Calcular brecha salarial
     ROUND(((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100, 2) AS pct_gap_to_avg,
     -- Historial reciente
-    NVL(rh.recent_flag, 'NO') AS recent_job_history_flag,
+    NVL(rh.recent_flag, &#x27;NO&#x27;) AS recent_job_history_flag,
     -- Ranking salarial dentro del departamento (función analítica)
     DENSE_RANK() OVER (PARTITION BY e.department_id ORDER BY e.salary DESC) AS salary_rank_in_department
 FROM t1_employees e
@@ -276,7 +261,7 @@ ORDER BY e.department_id, e.salary DESC;
 -- Esta consulta diagnóstica muestra información importante de TODOS los empleados incluyendo estadísticas 
 -- de sus departamentos. Calcula la antigüedad de cada empleado, la brecha salarial de cada 
 -- empleado con respecto al promedio del departamento, y revisa si tienen historial reciente.
--- Utiliza funciones analíticas como 'DENSE_RANK' para determinar la posición salarial de cada empleado 
+-- Utiliza funciones analíticas como &#x27;DENSE_RANK&#x27; para determinar la posición salarial de cada empleado 
 -- dentro de su departamento, lo cual ayuda a identificar candidatos potenciales para un ajuste salarial.
 
 -- ============================================================
@@ -315,7 +300,7 @@ ORDER BY e.department_id, e.salary DESC;
 --
 -- IMPORTANTE:
 -- - Debe tomar en cuenta la variante asignada por el docente
--- - Debe usar los valores de T1_VARIANTS según &p_variant_id
+-- - Debe usar los valores de T1_VARIANTS según &amp;p_variant_id
 -- - Debe quedar visible por qué una persona sí o no entra al proceso
 -- ============================================================
 
@@ -341,11 +326,11 @@ dept_stats AS (
 recent_history AS (
     SELECT DISTINCT 
         jh.employee_id, 
-        'SI' AS recent_flag
+        &#x27;SI&#x27; AS recent_flag
     FROM t1_job_history jh
     CROSS JOIN t1_variants v
-    WHERE v.variant_id = &p_variant_id
-      AND jh.end_date >= ADD_MONTHS(TRUNC(SYSDATE), -v.recent_job_history_months)
+    WHERE v.variant_id = &amp;p_variant_id
+      AND jh.end_date &gt;= ADD_MONTHS(TRUNC(SYSDATE), -v.recent_job_history_months)
 ),
 
 -- CTE 3: Identificar managers
@@ -369,7 +354,7 @@ variant_params AS (
         raise_low_pct,
         max_salary_vs_avg_pct
     FROM t1_variants 
-    WHERE variant_id = &p_variant_id
+    WHERE variant_id = &amp;p_variant_id
 )
 
 -- Consulta principal (decisión de elegibilidad)
@@ -385,55 +370,55 @@ SELECT
     ROUND(ds.dept_max_salary, 2) AS dept_max_salary,
     ds.dept_employee_count,
     ROUND(((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100, 2) AS pct_gap_to_avg,
-    NVL(rh.recent_flag, 'NO') AS recent_job_history_flag,
+    NVL(rh.recent_flag, &#x27;NO&#x27;) AS recent_job_history_flag,
     
     -- Identificar si es manager o ejecutivo
     CASE 
-        WHEN m.manager_id IS NOT NULL THEN 'SI'
-        WHEN e.job_id LIKE '%_VP' THEN 'SI'
-        WHEN e.job_id LIKE 'AD_%' THEN 'SI'
-        WHEN e.job_id = 'AD_PRES' THEN 'SI'
-        ELSE 'NO' 
+        WHEN m.manager_id IS NOT NULL THEN &#x27;SI&#x27;
+        WHEN e.job_id LIKE &#x27;%_VP&#x27; THEN &#x27;SI&#x27;
+        WHEN e.job_id LIKE &#x27;AD_%&#x27; THEN &#x27;SI&#x27;
+        WHEN e.job_id = &#x27;AD_PRES&#x27; THEN &#x27;SI&#x27;
+        ELSE &#x27;NO&#x27; 
     END AS manager_or_exec_flag,
     
     -- DETERMINAR ELEGIBILIDAD
     CASE 
         -- Exclusión 1: Sin departamento
-        WHEN e.department_id IS NULL THEN 'NO_ELEGIBLE'
+        WHEN e.department_id IS NULL THEN &#x27;NO_ELEGIBLE&#x27;
         
         -- Exclusión 2: Departamento excluido por variante
-        WHEN e.department_id = v.excluded_department_id THEN 'NO_ELEGIBLE'
+        WHEN e.department_id = v.excluded_department_id THEN &#x27;NO_ELEGIBLE&#x27;
         
         -- Exclusión 3: Departamento con menos de 3 empleados
-        WHEN ds.dept_employee_count < 3 THEN 'NO_ELEGIBLE'
+        WHEN ds.dept_employee_count &lt; 3 THEN &#x27;NO_ELEGIBLE&#x27;
         
         -- Exclusión 4: Antigüedad insuficiente
-        WHEN ROUND(MONTHS_BETWEEN(SYSDATE, e.hire_date) / 12, 2) < v.min_years_service THEN 'NO_ELEGIBLE'
+        WHEN ROUND(MONTHS_BETWEEN(SYSDATE, e.hire_date) / 12, 2) &lt; v.min_years_service THEN &#x27;NO_ELEGIBLE&#x27;
         
         -- Exclusión 5: Historial laboral reciente
-        WHEN NVL(rh.recent_flag, 'NO') = 'SI' THEN 'NO_ELEGIBLE'
+        WHEN NVL(rh.recent_flag, &#x27;NO&#x27;) = &#x27;SI&#x27; THEN &#x27;NO_ELEGIBLE&#x27;
         
         -- Exclusión 6: Es manager o ejecutivo
-        WHEN m.manager_id IS NOT NULL THEN 'NO_ELEGIBLE'
-        WHEN e.job_id LIKE '%_VP' THEN 'NO_ELEGIBLE'
-        WHEN e.job_id LIKE 'AD_%' THEN 'NO_ELEGIBLE'
+        WHEN m.manager_id IS NOT NULL THEN &#x27;NO_ELEGIBLE&#x27;
+        WHEN e.job_id LIKE &#x27;%_VP&#x27; THEN &#x27;NO_ELEGIBLE&#x27;
+        WHEN e.job_id LIKE &#x27;AD_%&#x27; THEN &#x27;NO_ELEGIBLE&#x27;
         
         -- Exclusión 7: Salario ya en o por encima del promedio
-        WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100 <= 0 THEN 'NO_ELEGIBLE'
+        WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100 &lt;= 0 THEN &#x27;NO_ELEGIBLE&#x27;
         
         -- Si no cumple ninguna exclusión, es ELEGIBLE
-        ELSE 'ELEGIBLE'
+        ELSE &#x27;ELEGIBLE&#x27;
     END AS eligibility_flag,
     
     -- RAZÓN DE EXCLUSIÓN
     CASE 
-        WHEN e.department_id IS NULL THEN 'SIN_DEPARTAMENTO'
-        WHEN e.department_id = v.excluded_department_id THEN 'DEPTO_EXCLUIDO'
-        WHEN ds.dept_employee_count < 3 THEN 'DEPTO_MENOR_A_3'
-        WHEN ROUND(MONTHS_BETWEEN(SYSDATE, e.hire_date) / 12, 2) < v.min_years_service THEN 'ANTIGUEDAD_INSUFICIENTE'
-        WHEN NVL(rh.recent_flag, 'NO') = 'SI' THEN 'HISTORIAL_RECIENTE'
-        WHEN m.manager_id IS NOT NULL OR e.job_id LIKE '%_VP' OR e.job_id LIKE 'AD_%' THEN 'MANAGER_O_DIRECTIVO'
-        WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100 <= 0 THEN 'SALARIO_NO_APLICA'
+        WHEN e.department_id IS NULL THEN &#x27;SIN_DEPARTAMENTO&#x27;
+        WHEN e.department_id = v.excluded_department_id THEN &#x27;DEPTO_EXCLUIDO&#x27;
+        WHEN ds.dept_employee_count &lt; 3 THEN &#x27;DEPTO_MENOR_A_3&#x27;
+        WHEN ROUND(MONTHS_BETWEEN(SYSDATE, e.hire_date) / 12, 2) &lt; v.min_years_service THEN &#x27;ANTIGUEDAD_INSUFICIENTE&#x27;
+        WHEN NVL(rh.recent_flag, &#x27;NO&#x27;) = &#x27;SI&#x27; THEN &#x27;HISTORIAL_RECIENTE&#x27;
+        WHEN m.manager_id IS NOT NULL OR e.job_id LIKE &#x27;%_VP&#x27; OR e.job_id LIKE &#x27;AD_%&#x27; THEN &#x27;MANAGER_O_DIRECTIVO&#x27;
+        WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100 &lt;= 0 THEN &#x27;SALARIO_NO_APLICA&#x27;
         ELSE NULL
     END AS exclusion_reason,
     
@@ -442,18 +427,18 @@ SELECT
         -- Si no es elegible, no hay ajuste
         WHEN e.department_id IS NULL THEN NULL
         WHEN e.department_id = v.excluded_department_id THEN NULL
-        WHEN ds.dept_employee_count < 3 THEN NULL
-        WHEN ROUND(MONTHS_BETWEEN(SYSDATE, e.hire_date) / 12, 2) < v.min_years_service THEN NULL
-        WHEN NVL(rh.recent_flag, 'NO') = 'SI' THEN NULL
-        WHEN m.manager_id IS NOT NULL OR e.job_id LIKE '%_VP' OR e.job_id LIKE 'AD_%' THEN NULL
-        WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100 <= 0 THEN NULL
+        WHEN ds.dept_employee_count &lt; 3 THEN NULL
+        WHEN ROUND(MONTHS_BETWEEN(SYSDATE, e.hire_date) / 12, 2) &lt; v.min_years_service THEN NULL
+        WHEN NVL(rh.recent_flag, &#x27;NO&#x27;) = &#x27;SI&#x27; THEN NULL
+        WHEN m.manager_id IS NOT NULL OR e.job_id LIKE &#x27;%_VP&#x27; OR e.job_id LIKE &#x27;AD_%&#x27; THEN NULL
+        WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100 &lt;= 0 THEN NULL
         
         -- Si es elegible, calcular según brecha
-        WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100 >= v.gap_high_threshold_pct 
+        WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100 &gt;= v.gap_high_threshold_pct 
              THEN v.raise_high_pct
-        WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100 >= v.gap_mid_threshold_pct 
+        WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100 &gt;= v.gap_mid_threshold_pct 
              THEN v.raise_mid_pct
-        WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100 > 0 
+        WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100 &gt; 0 
              THEN v.raise_low_pct
         ELSE NULL
     END AS adjustment_pct,
@@ -463,19 +448,19 @@ SELECT
         -- Si no es elegible, no hay regla
         WHEN e.department_id IS NULL THEN NULL
         WHEN e.department_id = v.excluded_department_id THEN NULL
-        WHEN ds.dept_employee_count < 3 THEN NULL
-        WHEN ROUND(MONTHS_BETWEEN(SYSDATE, e.hire_date) / 12, 2) < v.min_years_service THEN NULL
-        WHEN NVL(rh.recent_flag, 'NO') = 'SI' THEN NULL
-        WHEN m.manager_id IS NOT NULL OR e.job_id LIKE '%_VP' OR e.job_id LIKE 'AD_%' THEN NULL
-        WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100 <= 0 THEN NULL
+        WHEN ds.dept_employee_count &lt; 3 THEN NULL
+        WHEN ROUND(MONTHS_BETWEEN(SYSDATE, e.hire_date) / 12, 2) &lt; v.min_years_service THEN NULL
+        WHEN NVL(rh.recent_flag, &#x27;NO&#x27;) = &#x27;SI&#x27; THEN NULL
+        WHEN m.manager_id IS NOT NULL OR e.job_id LIKE &#x27;%_VP&#x27; OR e.job_id LIKE &#x27;AD_%&#x27; THEN NULL
+        WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100 &lt;= 0 THEN NULL
         
         -- Si es elegible, determinar regla según brecha
-        WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100 >= v.gap_high_threshold_pct 
-             THEN 'AJUSTE_ALTO'
-        WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100 >= v.gap_mid_threshold_pct 
-             THEN 'AJUSTE_MEDIO'
-        WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100 > 0 
-             THEN 'AJUSTE_BAJO'
+        WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100 &gt;= v.gap_high_threshold_pct 
+             THEN &#x27;AJUSTE_ALTO&#x27;
+        WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100 &gt;= v.gap_mid_threshold_pct 
+             THEN &#x27;AJUSTE_MEDIO&#x27;
+        WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100 &gt; 0 
+             THEN &#x27;AJUSTE_BAJO&#x27;
         ELSE NULL
     END AS rule_applied
     
@@ -491,11 +476,11 @@ ORDER BY eligibility_flag DESC, e.department_id, pct_gap_to_avg DESC;
 -- Explique en 3 a 5 líneas cómo aplicó la variante y por qué su población
 -- elegible sí cumple las reglas del caso.
 
--- Esta consulta aplica la variante 'p_variant_id' utilizando los parámetros de la tabla 'T1_VARIANTS', incluyendo el 
+-- Esta consulta aplica la variante &#x27;p_variant_id&#x27; utilizando los parámetros de la tabla &#x27;T1_VARIANTS&#x27;, incluyendo el 
 -- departamento excluido, antigüedad del empleado, historial reciente, umbrales de brecha salarial y porcentajes de ajuste. 
 -- La población elegible cumple todas las reglas: tienen departamento válido (no excluido y 3 o más empleados), antigüedad suficiente,
 -- sin historial reciente, no son managers, y tienen salario por debajo del promedio departamental. Cada elegible recibe una regla 
--- aplicada según su brecha: ALTO (≥10%), MEDIO (≥5%) o BAJO (>0%).
+-- aplicada según su brecha: ALTO (≥10%), MEDIO (≥5%) o BAJO (&gt;0%).
 
 -- ============================================================
 -- 3. PREVALIDACIÓN ANTES DE LA TRANSACCIÓN
@@ -550,11 +535,11 @@ dept_stats AS (
     GROUP BY department_id
 ),
 recent_history AS (
-    SELECT DISTINCT jh.employee_id, 'SI' AS recent_flag
+    SELECT DISTINCT jh.employee_id, &#x27;SI&#x27; AS recent_flag
     FROM t1_job_history jh
     CROSS JOIN t1_variants v
-    WHERE v.variant_id = &p_variant_id
-      AND jh.end_date >= ADD_MONTHS(TRUNC(SYSDATE), -v.recent_job_history_months)
+    WHERE v.variant_id = &amp;p_variant_id
+      AND jh.end_date &gt;= ADD_MONTHS(TRUNC(SYSDATE), -v.recent_job_history_months)
 ),
 managers AS (
     SELECT DISTINCT manager_id FROM t1_employees WHERE manager_id IS NOT NULL
@@ -564,7 +549,7 @@ variant_params AS (
            gap_high_threshold_pct, gap_mid_threshold_pct,
            raise_high_pct, raise_mid_pct, raise_low_pct,
            max_salary_vs_avg_pct
-    FROM t1_variants WHERE variant_id = &p_variant_id
+    FROM t1_variants WHERE variant_id = &amp;p_variant_id
 ),
 -- CTE de elegibles con salario proyectado
 elegibles AS (
@@ -575,17 +560,17 @@ elegibles AS (
            ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100 AS pct_gap,
            CASE
                WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100
-                    >= v.gap_high_threshold_pct THEN v.raise_high_pct
+                    &gt;= v.gap_high_threshold_pct THEN v.raise_high_pct
                WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100
-                    >= v.gap_mid_threshold_pct  THEN v.raise_mid_pct
+                    &gt;= v.gap_mid_threshold_pct  THEN v.raise_mid_pct
                ELSE v.raise_low_pct
            END                               AS adjustment_pct,
            CASE
                WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100
-                    >= v.gap_high_threshold_pct THEN 'AJUSTE_ALTO'
+                    &gt;= v.gap_high_threshold_pct THEN &#x27;AJUSTE_ALTO&#x27;
                WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100
-                    >= v.gap_mid_threshold_pct  THEN 'AJUSTE_MEDIO'
-               ELSE 'AJUSTE_BAJO'
+                    &gt;= v.gap_mid_threshold_pct  THEN &#x27;AJUSTE_MEDIO&#x27;
+               ELSE &#x27;AJUSTE_BAJO&#x27;
            END                               AS rule_applied,
            v.max_salary_vs_avg_pct
     FROM t1_employees e
@@ -594,14 +579,14 @@ elegibles AS (
     LEFT JOIN recent_history rh ON e.employee_id = rh.employee_id
     LEFT JOIN managers m        ON e.employee_id = m.manager_id
     WHERE e.department_id IS NOT NULL
-      AND e.department_id <> v.excluded_department_id
-      AND ds.dept_employee_count >= 3
-      AND MONTHS_BETWEEN(SYSDATE, e.hire_date) / 12 >= v.min_years_service
-      AND NVL(rh.recent_flag, 'NO') = 'NO'
+      AND e.department_id &lt;&gt; v.excluded_department_id
+      AND ds.dept_employee_count &gt;= 3
+      AND MONTHS_BETWEEN(SYSDATE, e.hire_date) / 12 &gt;= v.min_years_service
+      AND NVL(rh.recent_flag, &#x27;NO&#x27;) = &#x27;NO&#x27;
       AND m.manager_id IS NULL
-      AND e.job_id NOT LIKE '%_VP'
-      AND e.job_id NOT LIKE 'AD_%'
-      AND ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100 > 0
+      AND e.job_id NOT LIKE &#x27;%_VP&#x27;
+      AND e.job_id NOT LIKE &#x27;AD_%&#x27;
+      AND ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100 &gt; 0
 ),
 -- Agregar salary_after con tope aplicado
 elegibles_con_proyeccion AS (
@@ -637,11 +622,11 @@ dept_stats AS (
     GROUP BY department_id
 ),
 recent_history AS (
-    SELECT DISTINCT jh.employee_id, 'SI' AS recent_flag
+    SELECT DISTINCT jh.employee_id, &#x27;SI&#x27; AS recent_flag
     FROM t1_job_history jh
     CROSS JOIN t1_variants v
-    WHERE v.variant_id = &p_variant_id
-      AND jh.end_date >= ADD_MONTHS(TRUNC(SYSDATE), -v.recent_job_history_months)
+    WHERE v.variant_id = &amp;p_variant_id
+      AND jh.end_date &gt;= ADD_MONTHS(TRUNC(SYSDATE), -v.recent_job_history_months)
 ),
 managers AS (
     SELECT DISTINCT manager_id
@@ -654,7 +639,7 @@ variant_params AS (
            raise_high_pct, raise_mid_pct, raise_low_pct,
            max_salary_vs_avg_pct
     FROM t1_variants
-    WHERE variant_id = &p_variant_id
+    WHERE variant_id = &amp;p_variant_id
 ),
 elegibles AS (
     SELECT e.employee_id,
@@ -664,17 +649,17 @@ elegibles AS (
            ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100 AS pct_gap,
            CASE
                WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100
-                    >= v.gap_high_threshold_pct THEN v.raise_high_pct
+                    &gt;= v.gap_high_threshold_pct THEN v.raise_high_pct
                WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100
-                    >= v.gap_mid_threshold_pct  THEN v.raise_mid_pct
+                    &gt;= v.gap_mid_threshold_pct  THEN v.raise_mid_pct
                ELSE v.raise_low_pct
            END AS adjustment_pct,
            CASE
                WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100
-                    >= v.gap_high_threshold_pct THEN 'AJUSTE_ALTO'
+                    &gt;= v.gap_high_threshold_pct THEN &#x27;AJUSTE_ALTO&#x27;
                WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100
-                    >= v.gap_mid_threshold_pct  THEN 'AJUSTE_MEDIO'
-               ELSE 'AJUSTE_BAJO'
+                    &gt;= v.gap_mid_threshold_pct  THEN &#x27;AJUSTE_MEDIO&#x27;
+               ELSE &#x27;AJUSTE_BAJO&#x27;
            END AS rule_applied,
            v.max_salary_vs_avg_pct
     FROM t1_employees e
@@ -683,14 +668,14 @@ elegibles AS (
     LEFT JOIN recent_history rh ON e.employee_id = rh.employee_id
     LEFT JOIN managers m        ON e.employee_id = m.manager_id
     WHERE e.department_id IS NOT NULL
-      AND e.department_id        <> v.excluded_department_id
-      AND ds.dept_employee_count >= 3
-      AND MONTHS_BETWEEN(SYSDATE, e.hire_date) / 12 >= v.min_years_service
-      AND NVL(rh.recent_flag, 'NO') = 'NO'
+      AND e.department_id        &lt;&gt; v.excluded_department_id
+      AND ds.dept_employee_count &gt;= 3
+      AND MONTHS_BETWEEN(SYSDATE, e.hire_date) / 12 &gt;= v.min_years_service
+      AND NVL(rh.recent_flag, &#x27;NO&#x27;) = &#x27;NO&#x27;
       AND m.manager_id IS NULL
-      AND e.job_id NOT LIKE '%_VP'
-      AND e.job_id NOT LIKE 'AD_%'
-      AND ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100 > 0
+      AND e.job_id NOT LIKE &#x27;%_VP&#x27;
+      AND e.job_id NOT LIKE &#x27;AD_%&#x27;
+      AND ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100 &gt; 0
 ),
 elegibles_con_proyeccion AS (
     SELECT el.*,
@@ -725,11 +710,11 @@ dept_stats AS (
     GROUP BY department_id
 ),
 recent_history AS (
-    SELECT DISTINCT jh.employee_id, 'SI' AS recent_flag
+    SELECT DISTINCT jh.employee_id, &#x27;SI&#x27; AS recent_flag
     FROM t1_job_history jh
     CROSS JOIN t1_variants v
-    WHERE v.variant_id = &p_variant_id
-      AND jh.end_date >= ADD_MONTHS(TRUNC(SYSDATE), -v.recent_job_history_months)
+    WHERE v.variant_id = &amp;p_variant_id
+      AND jh.end_date &gt;= ADD_MONTHS(TRUNC(SYSDATE), -v.recent_job_history_months)
 ),
 managers AS (
     SELECT DISTINCT manager_id
@@ -742,7 +727,7 @@ variant_params AS (
            raise_high_pct, raise_mid_pct, raise_low_pct,
            max_salary_vs_avg_pct
     FROM t1_variants
-    WHERE variant_id = &p_variant_id
+    WHERE variant_id = &amp;p_variant_id
 ),
 elegibles AS (
     SELECT e.employee_id,
@@ -753,9 +738,9 @@ elegibles AS (
            ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100 AS pct_gap,
            CASE
                WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100
-                    >= v.gap_high_threshold_pct THEN v.raise_high_pct
+                    &gt;= v.gap_high_threshold_pct THEN v.raise_high_pct
                WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100
-                    >= v.gap_mid_threshold_pct  THEN v.raise_mid_pct
+                    &gt;= v.gap_mid_threshold_pct  THEN v.raise_mid_pct
                ELSE v.raise_low_pct
            END AS adjustment_pct,
            v.max_salary_vs_avg_pct
@@ -765,14 +750,14 @@ elegibles AS (
     LEFT JOIN recent_history rh ON e.employee_id = rh.employee_id
     LEFT JOIN managers m        ON e.employee_id = m.manager_id
     WHERE e.department_id IS NOT NULL
-      AND e.department_id        <> v.excluded_department_id
-      AND ds.dept_employee_count >= 3
-      AND MONTHS_BETWEEN(SYSDATE, e.hire_date) / 12 >= v.min_years_service
-      AND NVL(rh.recent_flag, 'NO') = 'NO'
+      AND e.department_id        &lt;&gt; v.excluded_department_id
+      AND ds.dept_employee_count &gt;= 3
+      AND MONTHS_BETWEEN(SYSDATE, e.hire_date) / 12 &gt;= v.min_years_service
+      AND NVL(rh.recent_flag, &#x27;NO&#x27;) = &#x27;NO&#x27;
       AND m.manager_id IS NULL
-      AND e.job_id NOT LIKE '%_VP'
-      AND e.job_id NOT LIKE 'AD_%'
-      AND ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100 > 0
+      AND e.job_id NOT LIKE &#x27;%_VP&#x27;
+      AND e.job_id NOT LIKE &#x27;AD_%&#x27;
+      AND ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100 &gt; 0
 ),
 elegibles_con_proyeccion AS (
     SELECT el.*,
@@ -806,8 +791,8 @@ ORDER BY ep.department_id;
 -- 5. COMMIT o ROLLBACK TO SAVEPOINT
 --
 -- IMPORTANTE:
--- - La auditoría debe usar el valor &p_execution_tag
--- - La auditoría debe usar el valor &p_variant_id
+-- - La auditoría debe usar el valor &amp;p_execution_tag
+-- - La auditoría debe usar el valor &amp;p_variant_id
 -- - Debe usar la secuencia AUDIT_SALARY_ADJ_T1_SEQ.NEXTVAL
 -- ============================================================
 
@@ -825,9 +810,9 @@ SET salary = (
                ROUND(e.salary * (1 +
                    CASE
                        WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100
-                            >= v.gap_high_threshold_pct THEN v.raise_high_pct
+                            &gt;= v.gap_high_threshold_pct THEN v.raise_high_pct
                        WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100
-                            >= v.gap_mid_threshold_pct  THEN v.raise_mid_pct
+                            &gt;= v.gap_mid_threshold_pct  THEN v.raise_mid_pct
                        ELSE v.raise_low_pct
                    END / 100), 2),
                ROUND(ds.dept_avg_salary * v.max_salary_vs_avg_pct / 100, 2)
@@ -840,7 +825,7 @@ SET salary = (
           GROUP BY department_id) ds,
          t1_variants v
     WHERE ds.department_id = e.department_id
-      AND v.variant_id     = &p_variant_id
+      AND v.variant_id     = &amp;p_variant_id
 )
 WHERE e.employee_id IN (
     SELECT e2.employee_id
@@ -851,40 +836,40 @@ WHERE e.employee_id IN (
           FROM t1_employees
           WHERE department_id IS NOT NULL
           GROUP BY department_id) ds2 ON e2.department_id = ds2.department_id
-    JOIN t1_variants v2 ON v2.variant_id = &p_variant_id
+    JOIN t1_variants v2 ON v2.variant_id = &amp;p_variant_id
     WHERE e2.department_id IS NOT NULL
-      AND e2.department_id <> v2.excluded_department_id
-      AND ds2.cnt >= 3
-      AND MONTHS_BETWEEN(SYSDATE, e2.hire_date) / 12 >= v2.min_years_service
+      AND e2.department_id &lt;&gt; v2.excluded_department_id
+      AND ds2.cnt &gt;= 3
+      AND MONTHS_BETWEEN(SYSDATE, e2.hire_date) / 12 &gt;= v2.min_years_service
       AND NOT EXISTS (
               SELECT 1 FROM t1_job_history jh
               WHERE jh.employee_id = e2.employee_id
-                AND jh.end_date >= ADD_MONTHS(TRUNC(SYSDATE), -v2.recent_job_history_months)
+                AND jh.end_date &gt;= ADD_MONTHS(TRUNC(SYSDATE), -v2.recent_job_history_months)
           )
       AND e2.employee_id NOT IN (
               SELECT DISTINCT manager_id
               FROM t1_employees
               WHERE manager_id IS NOT NULL
           )
-      AND e2.job_id NOT LIKE '%_VP'
-      AND e2.job_id NOT LIKE 'AD_%'
-      AND ((ds2.dept_avg_salary - e2.salary) / ds2.dept_avg_salary) * 100 > 0
+      AND e2.job_id NOT LIKE &#x27;%_VP&#x27;
+      AND e2.job_id NOT LIKE &#x27;AD_%&#x27;
+      AND ((ds2.dept_avg_salary - e2.salary) / ds2.dept_avg_salary) * 100 &gt; 0
 );
 
 -- 4.2 INSERCIÓN EN AUDITORÍA (PRIMER PASO)
 -- Debe llenar estas columnas de AUDIT_SALARY_ADJUSTMENTS_T1:
---   audit_id               -> usar AUDIT_SALARY_ADJ_T1_SEQ.NEXTVAL
---   execution_tag          -> usar &p_execution_tag
---   variant_id             -> usar &p_variant_id
---   employee_id            -> id del empleado ajustado
---   department_id          -> departamento del empleado
---   salary_before          -> salario antes del ajuste
---   salary_after           -> salario después del ajuste
---   pct_gap_to_avg_before  -> brecha porcentual antes del ajuste
---   rule_applied           -> regla aplicada
---   executed_by            -> USER
---   executed_at            -> SYSDATE
---   notes                  -> comentario libre
+--   audit_id               -&gt; usar AUDIT_SALARY_ADJ_T1_SEQ.NEXTVAL
+--   execution_tag          -&gt; usar &amp;p_execution_tag
+--   variant_id             -&gt; usar &amp;p_variant_id
+--   employee_id            -&gt; id del empleado ajustado
+--   department_id          -&gt; departamento del empleado
+--   salary_before          -&gt; salario antes del ajuste
+--   salary_after           -&gt; salario después del ajuste
+--   pct_gap_to_avg_before  -&gt; brecha porcentual antes del ajuste
+--   rule_applied           -&gt; regla aplicada
+--   executed_by            -&gt; USER
+--   executed_at            -&gt; SYSDATE
+--   notes                  -&gt; comentario libre
 
 INSERT INTO audit_salary_adjustments_t1 (
     audit_id,
@@ -920,8 +905,8 @@ INSERT INTO audit_salary_adjustments_t1 (
 )
 SELECT
     audit_salary_adj_t1_seq.NEXTVAL,
-    '&p_execution_tag',
-    &p_variant_id,
+    &#x27;&amp;p_execution_tag&#x27;,
+    &amp;p_variant_id,
     ep.employee_id,
     ep.department_id,
     ep.salary_before,
@@ -930,7 +915,7 @@ SELECT
     ep.rule_applied,
     USER,
     SYSDATE,
-    'Variante 4 - Ajuste agresivo controlado. Tag: &p_execution_tag'
+    &#x27;Variante 4 - Ajuste agresivo controlado. Tag: &amp;p_execution_tag&#x27;
 FROM (
     SELECT e.employee_id,
            e.department_id,
@@ -941,19 +926,19 @@ FROM (
                ROUND(e.salary * (1 +
                    CASE
                        WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100
-                            >= v.gap_high_threshold_pct THEN v.raise_high_pct
+                            &gt;= v.gap_high_threshold_pct THEN v.raise_high_pct
                        WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100
-                            >= v.gap_mid_threshold_pct  THEN v.raise_mid_pct
+                            &gt;= v.gap_mid_threshold_pct  THEN v.raise_mid_pct
                        ELSE v.raise_low_pct
                    END / 100), 2),
                ROUND(ds.dept_avg_salary * v.max_salary_vs_avg_pct / 100, 2)
            ) AS salary_after,
            CASE
                WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100
-                    >= v.gap_high_threshold_pct THEN 'AJUSTE_ALTO'
+                    &gt;= v.gap_high_threshold_pct THEN &#x27;AJUSTE_ALTO&#x27;
                WHEN ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100
-                    >= v.gap_mid_threshold_pct  THEN 'AJUSTE_MEDIO'
-               ELSE 'AJUSTE_BAJO'
+                    &gt;= v.gap_mid_threshold_pct  THEN &#x27;AJUSTE_MEDIO&#x27;
+               ELSE &#x27;AJUSTE_BAJO&#x27;
            END AS rule_applied
     FROM t1_employees e
     JOIN (SELECT department_id,
@@ -962,24 +947,24 @@ FROM (
           FROM t1_employees
           WHERE department_id IS NOT NULL
           GROUP BY department_id) ds ON e.department_id = ds.department_id
-    JOIN t1_variants v ON v.variant_id = &p_variant_id
+    JOIN t1_variants v ON v.variant_id = &amp;p_variant_id
     WHERE e.department_id IS NOT NULL
-      AND e.department_id <> v.excluded_department_id
-      AND ds.cnt >= 3
-      AND MONTHS_BETWEEN(SYSDATE, e.hire_date) / 12 >= v.min_years_service
+      AND e.department_id &lt;&gt; v.excluded_department_id
+      AND ds.cnt &gt;= 3
+      AND MONTHS_BETWEEN(SYSDATE, e.hire_date) / 12 &gt;= v.min_years_service
       AND NOT EXISTS (
               SELECT 1 FROM t1_job_history jh
               WHERE jh.employee_id = e.employee_id
-                AND jh.end_date >= ADD_MONTHS(TRUNC(SYSDATE), -v.recent_job_history_months)
+                AND jh.end_date &gt;= ADD_MONTHS(TRUNC(SYSDATE), -v.recent_job_history_months)
           )
       AND e.employee_id NOT IN (
               SELECT DISTINCT manager_id
               FROM t1_employees
               WHERE manager_id IS NOT NULL
           )
-      AND e.job_id NOT LIKE '%_VP'
-      AND e.job_id NOT LIKE 'AD_%'
-      AND ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100 > 0
+      AND e.job_id NOT LIKE &#x27;%_VP&#x27;
+      AND e.job_id NOT LIKE &#x27;AD_%&#x27;
+      AND ((ds.dept_avg_salary - e.salary) / ds.dept_avg_salary) * 100 &gt; 0
 ) ep;
 
 -- 4.3 VALIDACIÓN INTERMEDIA
@@ -1001,14 +986,14 @@ SELECT a.employee_id, a.department_id,
        e.salary AS current_salary,
        a.salary_before AS original_salary,
        ROUND(ds.dept_avg_salary * 119 / 100, 2) AS allowed_max_salary,
-       CASE WHEN e.salary <= ROUND(ds.dept_avg_salary * 119 / 100, 2)
-            THEN 'CUMPLE' ELSE 'EXCEDE_TOPE' END AS validation_status
+       CASE WHEN e.salary &lt;= ROUND(ds.dept_avg_salary * 119 / 100, 2)
+            THEN &#x27;CUMPLE&#x27; ELSE &#x27;EXCEDE_TOPE&#x27; END AS validation_status
 FROM audit_salary_adjustments_t1 a
 JOIN t1_employees e ON a.employee_id = e.employee_id
 JOIN (SELECT department_id, AVG(salary) AS dept_avg_salary
       FROM t1_employees WHERE department_id IS NOT NULL
       GROUP BY department_id) ds ON e.department_id = ds.department_id
-WHERE a.execution_tag = 'P01_FINAL'
+WHERE a.execution_tag = &#x27;P01_FINAL&#x27;
 ORDER BY a.department_id;
 
 -- 4.4 CONTROL TRANSACCIONAL
@@ -1048,7 +1033,7 @@ ORDER BY a.department_id;
 --   salary_before, salary_after, rule_applied, executed_by, executed_at
 --
 -- IMPORTANTE:
--- Todas las validaciones posteriores deben filtrar por &p_execution_tag
+-- Todas las validaciones posteriores deben filtrar por &amp;p_execution_tag
 -- ============================================================
 
 PROMPT ===== 5. VALIDACIÓN POSTERIOR =====
@@ -1059,7 +1044,7 @@ SELECT a.employee_id, e.first_name, e.last_name, a.department_id,
        a.salary_before, a.salary_after, a.execution_tag
 FROM audit_salary_adjustments_t1 a
 JOIN t1_employees e ON a.employee_id = e.employee_id
-WHERE a.execution_tag = '&p_execution_tag'
+WHERE a.execution_tag = &#x27;&amp;p_execution_tag&#x27;
 ORDER BY a.department_id;
 
 -- SALIDA 2. RESUMEN ECONÓMICO FINAL
@@ -1069,20 +1054,20 @@ SELECT COUNT(*)                             AS total_rows_audited,
        ROUND(SUM(salary_after), 2)          AS total_salary_after,
        ROUND(SUM(salary_after - salary_before), 2) AS total_increment
 FROM audit_salary_adjustments_t1
-WHERE execution_tag = '&p_execution_tag';
+WHERE execution_tag = &#x27;&amp;p_execution_tag&#x27;;
 
 -- SALIDA 3. VALIDACIÓN DE TOPES
 
 SELECT a.employee_id, a.department_id, a.salary_after,
        ROUND(ds.dept_avg_salary * v.max_salary_vs_avg_pct / 100, 2) AS allowed_max_salary,
-       CASE WHEN a.salary_after <= ROUND(ds.dept_avg_salary * v.max_salary_vs_avg_pct / 100, 2)
-            THEN 'CUMPLE' ELSE 'EXCEDE_TOPE' END AS top_limit_status
+       CASE WHEN a.salary_after &lt;= ROUND(ds.dept_avg_salary * v.max_salary_vs_avg_pct / 100, 2)
+            THEN &#x27;CUMPLE&#x27; ELSE &#x27;EXCEDE_TOPE&#x27; END AS top_limit_status
 FROM audit_salary_adjustments_t1 a
 JOIN (SELECT department_id, AVG(salary) AS dept_avg_salary
       FROM t1_employees WHERE department_id IS NOT NULL
       GROUP BY department_id) ds ON a.department_id = ds.department_id
-JOIN t1_variants v ON v.variant_id = &p_variant_id
-WHERE a.execution_tag = '&p_execution_tag'
+JOIN t1_variants v ON v.variant_id = &amp;p_variant_id
+WHERE a.execution_tag = &#x27;&amp;p_execution_tag&#x27;
 ORDER BY a.department_id;
 
 -- SALIDA 4. AUDITORÍA GENERADA
@@ -1090,7 +1075,7 @@ ORDER BY a.department_id;
 SELECT audit_id, execution_tag, variant_id, employee_id, department_id,
        salary_before, salary_after, rule_applied, executed_by, executed_at
 FROM audit_salary_adjustments_t1
-WHERE execution_tag = '&p_execution_tag'
+WHERE execution_tag = &#x27;&amp;p_execution_tag&#x27;
 ORDER BY audit_id;
 
 -- ============================================================
@@ -1154,15 +1139,14 @@ ORDER BY audit_id;
 -- la recuperación ante fallos, en este caso, el SAVEPOINT protege la integridad del proceso de ajuste salarial antes de su confirmación definitiva. 
 
 PROMPT ===== Fin de plantilla =====
-</p>
-    </div>
+</code></pre>
+    </section>
 
   </div>
 
 </Layout>
 
 <style>
-  /* ── Breadcrumb ─────────────────────────────────────────── */
   .breadcrumb {
     margin-bottom: 1.5rem;
   }
@@ -1182,7 +1166,6 @@ PROMPT ===== Fin de plantilla =====
     text-decoration: none;
   }
 
-  /* ── Page Header ────────────────────────────────────────── */
   .page-header {
     margin-bottom: 1.5rem;
   }
@@ -1232,7 +1215,6 @@ PROMPT ===== Fin de plantilla =====
     line-height: 1.6;
   }
 
-  /* ── Code Content Area ──────────────────────────────────── */
   .code-content {
     margin-top: 2rem;
     display: flex;
@@ -1240,7 +1222,6 @@ PROMPT ===== Fin de plantilla =====
     gap: 1.5rem;
   }
 
-  /* ── Code Block (template for your content) ─────────────── */
   .code-block {
     border: 1px solid var(--color-border);
     border-radius: var(--radius);
@@ -1277,29 +1258,10 @@ PROMPT ===== Fin de plantilla =====
     margin: 0;
     padding: 1.2rem 1.4rem;
     overflow-x: auto;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     line-height: 1.65;
     font-family: 'JetBrains Mono', 'Fira Code', monospace;
     color: var(--color-text-secondary);
-  }
-
-  /* ── Placeholder ────────────────────────────────────────── */
-  .placeholder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.9rem;
-    padding: 4rem 2rem;
-    border: 1px dashed rgba(125, 211, 252, 0.2);
-    border-radius: var(--radius);
-    color: rgba(125, 211, 252, 0.3);
-    text-align: center;
-  }
-
-  .placeholder p {
-    margin: 0;
-    font-size: 0.88rem;
-    color: var(--color-text-muted);
+    white-space: pre;
   }
 </style>
