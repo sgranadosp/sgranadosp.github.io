@@ -36,52 +36,52 @@ const pageDescription = 'Bases de datos no relacionales: MongoDB, documentos y c
 
     <section class="code-block">
       <div class="code-block__header">
-        <span class="code-block__label">Taller 1 &mdash; Inserción de documentos · FIFA World Cup 2026</span>
+        <span class="code-block__label">Ejercicios en clase &mdash; Creación de documentos - Mundial FIFA World Cup 2026</span>
         <span class="code-block__lang">MongoDB</span>
       </div>
       <pre class="code-block__pre"><code>db.selecciones.insertMany([
-    {nombre: &quot;Colombia&quot;, colorCamiseta: &quot;Amarrillo&quot;, capital: &quot;Bogotá&quot;, poblacion: 60000000},
-    {nombre: &quot;Inglaterra&quot;, capital: &quot;Londres&quot;, mundialesGanados: 1},
-    {nombre: &quot;Republica del Congo&quot;, edadPromedio: 15, continente: &quot;África&quot;}
+    {nombre: "Colombia", colorCamiseta: "Amarrillo", capital: "Bogotá", poblacion: 60000000},
+    {nombre: "Inglaterra", capital: "Londres", mundialesGanados: 1},
+    {nombre: "Republica del Congo", edadPromedio: 15, continente: "África"}
 ]);
 
-use(&quot;db_2026&quot;)
+use("db_2026")
 db.patrocinadores.insertMany([
-    {nombre: &quot;Adidas&quot;, paisOrigen: &quot;Alemania&quot;, categoria: &quot;Equipamiento Deportivo&quot; },
-    {nombre: &quot;Coca-Cola&quot;, paisOrigen: &quot;Estados Unidos&quot;, categoria: &quot;Bebidas&quot; },
-    {nombre: &quot;Visa&quot;, paisOrigen: &quot;Estados Unidos&quot;, categoria: &quot;Tecnología de Pagos&quot; },
-    {nombre: &quot;Qatar Airways&quot;, paisOrigen: &quot;Catar&quot;, categoria: &quot;Aerolínea&quot; },
-    {nombre: &quot;Hyundai-Kia&quot;, paisOrigen: &quot;Corea del Sur&quot;, categoria: &quot;Automotriz&quot; },
-    {nombre: &quot;Aramco&quot;, paisOrigen: &quot;Arabia Saudita&quot;, categoria: &quot;Energía&quot; },
-    {nombre: &quot;Lenovo&quot;, paisOrigen: &quot;China&quot;, categoria: &quot;Tecnología&quot; }
+    {nombre: "Adidas", paisOrigen: "Alemania", categoria: "Equipamiento Deportivo" },
+    {nombre: "Coca-Cola", paisOrigen: "Estados Unidos", categoria: "Bebidas" },
+    {nombre: "Visa", paisOrigen: "Estados Unidos", categoria: "Tecnología de Pagos" },
+    {nombre: "Qatar Airways", paisOrigen: "Catar", categoria: "Aerolínea" },
+    {nombre: "Hyundai-Kia", paisOrigen: "Corea del Sur", categoria: "Automotriz" },
+    {nombre: "Aramco", paisOrigen: "Arabia Saudita", categoria: "Energía" },
+    {nombre: "Lenovo", paisOrigen: "China", categoria: "Tecnología" }
 ]);
 
-use(&quot;db_2026&quot;)
+use("db_2026")
 db.estadios.insertMany([
-  { nombre: &quot;Mercedes-Benz Stadium&quot;, pais: &quot;Estados Unidos&quot;, ciudad: &quot;Atlanta&quot;, capacidad: 71000, inauguracion: 2017 },
-  { nombre: &quot;Gillette Stadium&quot;, pais: &quot;Estados Unidos&quot;, ciudad: &quot;Boston&quot;, superficie: &quot;Césped sintético&quot;, equipoLocal: &quot;New England Patriots&quot; },
-  { nombre: &quot;Estadio Azteca&quot;, pais: &quot;México&quot;, ciudad: &quot;Ciudad de México&quot;, capacidad: 87000, altitudMetros: 2200 },
-  { nombre: &quot;SoFi Stadium&quot;, pais: &quot;Estados Unidos&quot;, ciudad: &quot;Los Ángeles&quot;, techo: true, costoMillonesUsd: 5000 },
-  { nombre: &quot;BMO Field&quot;, pais: &quot;Canadá&quot;, ciudad: &quot;Toronto&quot;, equipoLocal: &quot;Toronto FC&quot;, renovado: 2016 }
+  { nombre: "Mercedes-Benz Stadium", pais: "Estados Unidos", ciudad: "Atlanta", capacidad: 71000, inauguracion: 2017 },
+  { nombre: "Gillette Stadium", pais: "Estados Unidos", ciudad: "Boston", superficie: "Césped sintético", equipoLocal: "New England Patriots" },
+  { nombre: "Estadio Azteca", pais: "México", ciudad: "Ciudad de México", capacidad: 87000, altitudMetros: 2200 },
+  { nombre: "SoFi Stadium", pais: "Estados Unidos", ciudad: "Los Ángeles", techo: true, costoMillonesUsd: 5000 },
+  { nombre: "BMO Field", pais: "Canadá", ciudad: "Toronto", equipoLocal: "Toronto FC", renovado: 2016 }
 ]);
 
-use(&quot;db_2026&quot;)
+use("db_2026")
 db.jugadores.insertMany([
-    {nombre: &quot;Luis Díaz&quot;, club: &quot;Bayern Munchen&quot;, paisRepresentado: &quot;Colombia&quot;, posicion: &quot;Extremo&quot;},
-    {nombre: &quot;Cristiano Ronaldo&quot;, club: &quot;Al Nassr&quot;, paisRepresentado: &quot;Portugal&quot;, posicion: &quot;Delantero&quot;},
-    {nombre: &quot;Lionel Messi&quot;, club: &quot;Inter Miami&quot;, paisRepresentado: &quot;Argentina&quot;, posicion: &quot;Falso 9&quot;},
-    {nombre: &quot;Kylian Mbappé&quot;, club: &quot;Real Madrid&quot;, paisRepresentado: &quot;Francia&quot;, posicion: &quot;Extremo&quot;},
-    {nombre: &quot;Pedri González&quot;, club: &quot;Barcelona&quot;, paisRepresentado: &quot;España&quot;, posicion: &quot;Mediocampista&quot;},
+    {nombre: "Luis Díaz", club: "Bayern Munchen", paisRepresentado: "Colombia", posicion: "Extremo"},
+    {nombre: "Cristiano Ronaldo", club: "Al Nassr", paisRepresentado: "Portugal", posicion: "Delantero"},
+    {nombre: "Lionel Messi", club: "Inter Miami", paisRepresentado: "Argentina", posicion: "Falso 9"},
+    {nombre: "Kylian Mbappé", club: "Real Madrid", paisRepresentado: "Francia", posicion: "Extremo"},
+    {nombre: "Pedri González", club: "Barcelona", paisRepresentado: "España", posicion: "Mediocampista"},
 ]);
 
-use(&quot;db_2026&quot;)
+use("db_2026")
 db.grupos.insertMany([
-    {letra: &quot;A&quot;, primerPuesto: &quot;Corea del Sur&quot;, segundoPuesto: &quot;México&quot;, integrantes: [&quot;México&quot;, &quot;Corea del Sur&quot;, &quot;Sudáfrica&quot;, &quot;Chequia&quot;]},
-    {letra: &quot;B&quot;, primerPuesto: &quot;Suiza&quot;, segundoPuesto: &quot;Bosnia y Herzegovina&quot;, integrantes: [&quot;Canadá&quot;, &quot;Bosnia y Herzegovina&quot;, &quot;Qatar&quot;, &quot;Suiza&quot;]},
-    {letra: &quot;C&quot;, primerPuesto: &quot;Brasil&quot;, segundoPuesto: &quot;Marruecos&quot;, integrantes: [&quot;Brasil&quot;, &quot;Marruecos&quot;, &quot;Haití&quot;, &quot;Escocia&quot;]},
-    {letra: &quot;D&quot;, primerPuesto: &quot;Turkiye&quot;, segundoPuesto: &quot;Paraguay&quot;, integrantes: [&quot;USA&quot;, &quot;Paraguay&quot;, &quot;Australia&quot;, &quot;Turkiye&quot;]},
-    {letra: &quot;E&quot;, primerPuesto: &quot;Alemania&quot;, segundoPuesto: &quot;Ecuador&quot;, integrantes: [&quot;Alemania&quot;, &quot;Ecuador&quot;, &quot;Curazao&quot;, &quot;Costa de Marfil&quot;]},
-]);</code></pre>
+    {letra: "A", primerPuesto: "Corea del Sur", segundoPuesto: "México", integrantes: ["México", "Corea del Sur", "Sudáfrica", "Chequia"]},
+    {letra: "B", primerPuesto: "Suiza", segundoPuesto: "Bosnia y Herzegovina", integrantes: ["Canadá", "Bosnia y Herzegovina", "Qatar", "Suiza"]},
+    {letra: "C", primerPuesto: "Brasil", segundoPuesto: "Marruecos", integrantes: ["Brasil", "Marruecos", "Haití", "Escocia"]},
+    {letra: "D", primerPuesto: "Turkiye", segundoPuesto: "Paraguay", integrantes: ["USA", "Paraguay", "Australia", "Turkiye"]},
+    {letra: "E", primerPuesto: "Alemania", segundoPuesto: "Ecuador", integrantes: ["Alemania", "Ecuador", "Curazao", "Costa de Marfil"]},
+]);
     </section>
 
   </div>
