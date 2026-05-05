@@ -1,45 +1,11 @@
 ---
 import Layout from '../layouts/BlogPost.astro';
 import GlowLineSeparator from '@/components/ui/separator/GlowLineSeparator.astro';
+
 const pageTitle = 'NoSQL';
 const pageDescription = 'Bases de datos no relacionales: MongoDB, documentos y colecciones.';
----
 
-<Layout title={pageTitle} description={pageDescription} pubDate={new Date()} showHeader={false}>
-
-  <!-- Breadcrumb -->
-  <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="/evidencias" class="breadcrumb__link">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-        <path d="M19 12H5M12 5l-7 7 7 7"/>
-      </svg>
-      Evidencias
-    </a>
-  </nav>
-
-  <!-- Page Header -->
-  <header class="page-header">
-    <div class="page-header__badge">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-      </svg>
-      Bases de Datos No Relacionales
-    </div>
-    <h1 class="page-header__title page-header__title--nosql">NoSQL</h1>
-    <p class="page-header__sub">Non-Relational Databases</p>
-    <p class="page-header__desc">Documentos, colecciones y consultas en MongoDB y otros motores NoSQL.</p>
-  </header>
-
-  <GlowLineSeparator />
-
-  <div class="code-content">
-
-    <section class="code-block">
-      <div class="code-block__header">
-        <span class="code-block__label">Ejercicios en clase &mdash; Creación de documentos - Mundial FIFA World Cup 2026</span>
-        <span class="code-block__lang">MongoDB</span>
-      </div>
-      <pre class="code-block__pre"><code>db.selecciones.insertMany([
+const codeContent = `db.selecciones.insertMany([
     {nombre: "Colombia", colorCamiseta: "Amarrillo", capital: "Bogotá", poblacion: 60000000},
     {nombre: "Inglaterra", capital: "Londres", mundialesGanados: 1},
     {nombre: "Republica del Congo", edadPromedio: 15, continente: "África"}
@@ -81,9 +47,42 @@ db.grupos.insertMany([
     {letra: "C", primerPuesto: "Brasil", segundoPuesto: "Marruecos", integrantes: ["Brasil", "Marruecos", "Haití", "Escocia"]},
     {letra: "D", primerPuesto: "Turkiye", segundoPuesto: "Paraguay", integrantes: ["USA", "Paraguay", "Australia", "Turkiye"]},
     {letra: "E", primerPuesto: "Alemania", segundoPuesto: "Ecuador", integrantes: ["Alemania", "Ecuador", "Curazao", "Costa de Marfil"]},
-]);
-    </section>
+]);`;
+---
 
+<Layout title={pageTitle} description={pageDescription} pubDate={new Date()} showHeader={false}>
+
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/evidencias" class="breadcrumb__link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M19 12H5M12 5l-7 7 7 7"/>
+      </svg>
+      Evidencias
+    </a>
+  </nav>
+
+  <header class="page-header">
+    <div class="page-header__badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+      </svg>
+      Bases de Datos No Relacionales
+    </div>
+    <h1 class="page-header__title page-header__title--nosql">NoSQL</h1>
+    <p class="page-header__sub">Non-Relational Databases</p>
+    <p class="page-header__desc">Documentos, colecciones y consultas en MongoDB y otros motores NoSQL.</p>
+  </header>
+
+  <GlowLineSeparator />
+
+  <div class="code-content">
+    <section class="code-block">
+      <div class="code-block__header">
+        <span class="code-block__label">Taller 1 &mdash; Inserción de documentos · FIFA World Cup 2026</span>
+        <span class="code-block__lang">MongoDB</span>
+      </div>
+      <pre class="code-block__pre"><code set:text={codeContent} /></pre>
+    </section>
   </div>
 
 </Layout>
@@ -92,7 +91,6 @@ db.grupos.insertMany([
   .breadcrumb {
     margin-bottom: 1.5rem;
   }
-
   .breadcrumb__link {
     display: inline-flex;
     align-items: center;
@@ -102,16 +100,13 @@ db.grupos.insertMany([
     text-decoration: none;
     transition: color 0.18s ease;
   }
-
   .breadcrumb__link:hover {
     color: rgb(110, 231, 183);
     text-decoration: none;
   }
-
   .page-header {
     margin-bottom: 1.5rem;
   }
-
   .page-header__badge {
     display: inline-flex;
     align-items: center;
@@ -127,7 +122,6 @@ db.grupos.insertMany([
     padding: 0.3rem 0.9rem;
     margin-bottom: 1rem;
   }
-
   .page-header__title {
     font-size: clamp(2.2rem, 6vw, 3.5rem);
     font-weight: 800;
@@ -135,42 +129,36 @@ db.grupos.insertMany([
     line-height: 1;
     margin: 0 0 0.3rem;
   }
-
   .page-header__title--nosql {
     background: linear-gradient(135deg, #d1fae5 0%, #6ee7b7 55%, #10b981 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-
   .page-header__sub {
     font-size: 0.85rem;
     color: var(--color-text-muted);
     margin: 0 0 0.6rem;
     letter-spacing: 0.04em;
   }
-
   .page-header__desc {
     font-size: 0.95rem;
     color: var(--color-text-muted);
     margin: 0;
     line-height: 1.6;
   }
-
   .code-content {
     margin-top: 2rem;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
   }
-
   .code-block {
     border: 1px solid var(--color-border);
     border-radius: var(--radius);
     overflow: hidden;
     background: var(--card);
   }
-
   .code-block__header {
     display: flex;
     align-items: center;
@@ -179,13 +167,11 @@ db.grupos.insertMany([
     background: rgba(110, 231, 183, 0.05);
     border-bottom: 1px solid rgba(110, 231, 183, 0.12);
   }
-
   .code-block__label {
     font-size: 0.78rem;
     color: rgb(110, 231, 183);
     font-weight: 500;
   }
-
   .code-block__lang {
     font-size: 0.68rem;
     letter-spacing: 0.1em;
@@ -195,7 +181,6 @@ db.grupos.insertMany([
     padding: 0.2rem 0.55rem;
     border-radius: 6px;
   }
-
   .code-block__pre {
     margin: 0;
     padding: 1.2rem 1.4rem;
